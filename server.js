@@ -1,7 +1,7 @@
 const http = require('http');
 
 const server = http.createServer(() => {
-    console.log("I am here");
+    console.log("I am listening");
 })
 
 server.listen(3000);
