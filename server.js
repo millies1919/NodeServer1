@@ -1,7 +1,20 @@
-const http = require('http');
+const express = require('express');
 
-const server = http.createServer(() => {
-    console.log("I am listening");
-})
+const app = express();
 
-server.listen(3000);
+app.use(express.urlencoded({extended: false}))
+app.use(express.json());
+app.get('/', (req, res) => {
+ res.send("getting root");
+});
+
+
+app.post('/', (req, res) => {
+    console.log(req.body)
+    const user = {
+        name: 'john',
+        hobby: "dogs"
+    }
+    res.send(user)
+});
+app.listen(3000);
