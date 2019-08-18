@@ -1,23 +1,22 @@
 const fs = require('fs');
 
-fs.readFile('./hello.txt', (err, data) => {
-    if (err) {
-        console.log('ERROR');
-    }
-    console.log('Async', data.toString('utf8'));
-})
 
-const file = fs.readFileSync('./hello.txt');
-console.log('Sync', file.toString());
-/* append
-fs.appendFile('./hello.txt', ' This is SO cool!', err => {
-    if (err) {
-        console.log(err);
-    }
-});   */
+const question1 = () => {
+fs.readFile('./input.txt', (err, data) => {
+    console.time('santa-time')
+    const input = data.toString('utf8');
+    const inputArray = input.split('');
+    const answer = inputArray.reduce((acc, currentValue) => {
+        if (currentValue === "("){
+            return acc += 1
+        } else if (currentValue === ")"){
+            return acc -= 1
+        }
+    }, 0)
+    console.log('floor: ', answer)
+    console.timeEnd('santa-time')
+  })
+}
 
-fs.writeFile('bye.txt', 'Sad to see you go', err => {
-    if (err) {
-        console.log(err)
-    }
-})
+question1();
+
